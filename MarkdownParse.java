@@ -18,10 +18,12 @@ public class MarkdownParse {
             }
             int closeBracket = markdown.indexOf("]", openBracket);
             int openParen = markdown.indexOf("(", closeBracket);
-            int closeParen = markdown.indexOf(")", openParen);
+            int dotWebsite = markdown.indexOf(".com", openParen); //assumes it's a dotcom website, could be .edu which it would fail
+            System.out.println(dotWebsite);
+            int closeParen = markdown.indexOf(")", dotWebsite);
+            System.out.println(closeParen);
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
-            System.out.println(currentIndex);
         }
 
         return toReturn;
