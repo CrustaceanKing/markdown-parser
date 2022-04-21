@@ -89,4 +89,13 @@ public class MarkdownParseTest {
         ArrayList<String> links = markParse2.getLinks(content);
         assertEquals(compareString, links);
     }
+
+    @Test
+    public void getLinks9() throws IOException{
+        ArrayList<String> compareString = new ArrayList<String>();
+        Path fileName = Path.of("failure3.md");
+        String content = Files.readString(fileName);
+        ArrayList<String> links = markParse2.getLinks(content);
+        assertEquals(compareString, links);
+    }
 }
