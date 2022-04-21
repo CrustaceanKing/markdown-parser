@@ -33,6 +33,9 @@ public class markParse2 {
             if (checklink.indexOf(".") == -1){
                 break;
             }
+            if (checklink.indexOf(" ") != -1){
+                break;
+            }
             //System.out.println(closeParen);
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
