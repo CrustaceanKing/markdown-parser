@@ -35,6 +35,12 @@ public class MarkdownParse {
                 else if (tempString.indexOf(".co") != -1){
                     endLink = markdown.indexOf(".co",beginLink);
                 }
+                else if (tempString.indexOf(".html") != -1){
+                    endLink = markdown.indexOf(".html",beginLink);
+                }
+                else if (tempString.indexOf(".java") != -1){
+                    endLink = markdown.indexOf(".java",beginLink);
+                }
                 else{
                     endLink = markdown.indexOf(".",beginLink);
                 }
