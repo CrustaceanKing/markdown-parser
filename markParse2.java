@@ -18,9 +18,22 @@ public class markParse2 {
                 break;
             }
             int closeBracket = markdown.indexOf("]", openBracket);
+            if (closeBracket == -1){
+                break;
+            }
             int openParen = markdown.indexOf("(", closeBracket);
+            if (openParen == -1){
+                break;
+            }
             int closeParen = markdown.indexOf(")", openParen);
-            System.out.println(closeParen);
+            if (closeParen == -1){
+                break;
+            }
+            String checklink = markdown.substring(openParen, closeParen);
+            if (checklink.indexOf(".") == -1){
+                break;
+            }
+            //System.out.println(closeParen);
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
         }
