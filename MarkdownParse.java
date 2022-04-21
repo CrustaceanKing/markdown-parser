@@ -12,20 +12,62 @@ public class MarkdownParse {
         // find the next [, then find the ], then find the (, then read link upto next )
         int currentIndex = 0;
         while(currentIndex < markdown.length()) {
-            int openBracket = markdown.indexOf("[", currentIndex);
-            if (openBracket == -1){
+            int beginLink = markdown.indexOf("https", currentIndex);
+            if (beginLink == -1){
                 break;
             }
-            int closeBracket = markdown.indexOf("]", openBracket);
-            int openParen = markdown.indexOf("(", closeBracket);
-            int dotWebsite = markdown.indexOf(".com", openParen); //assumes it's a dotcom website, could be .edu which it would fail
-            System.out.println(dotWebsite);
-            int closeParen = markdown.indexOf(")", dotWebsite);
-            System.out.println(closeParen);
-            toReturn.add(markdown.substring(openParen + 1, closeParen));
-            currentIndex = closeParen + 1;
+            int nextLink = markdown.indexOf("https", beginLink);
+            int endLink;
+            if (nextLink == -1){
+                String tempString = markdown.substring(beginLink);
+                if (tempString.indexOf(".com") != -1){
+                    endLink = markdown.indexOf(".com",beginLink);
+                }
+                else if (tempString.indexOf(".edu") != -1){
+                    endLink = markdown.indexOf(".edu",beginLink);
+                }
+                else if (tempString.indexOf(".gov") != -1){
+                    endLink = markdown.indexOf(".gov",beginLink);
+                }
+                else if (tempString.indexOf(".org") != -1){
+                    endLink = markdown.indexOf(".org",beginLink);
+                }
+                else if (tempString.indexOf(".co") != -1){
+                    endLink = markdown.indexOf(".co",beginLink);
+                }
+                else{
+                    endLink = markdown.indexOf(".",beginLink);
+                }
+            }
+            else{
+                String tempString = markdown.substring(beginLink, nextLink);
+                if (tempString.indexOf(".com") != -1){
+                    endLink = markdown.indexOf(".com",beginLink);
+                }
+                else if (tempString.indexOf(".edu") != -1){
+                    endLink = markdown.indexOf(".edu",beginLink);
+                }
+                else if (tempString.indexOf(".gov") != -1){
+                    endLink = markdown.indexOf(".gov",beginLink);
+                }
+                else if (tempString.indexOf(".org") != -1){
+                    endLink = markdown.indexOf(".org",beginLink);
+                }
+                else if (tempString.indexOf(".co") != -1){
+                    endLink = markdown.indexOf(".co",beginLink);
+                }
+                else{
+                    endLink = -markdown.indexOf(".",beginLink);
+                }
+            }
+            if (endLink == -1){
+                break;
+            }
+            toReturn.add(markdown.substring(beginLink, endLink));
+            if (currentIndex == 0 || currentIndex == -1){
+                break;
+            }
         }
-
         return toReturn;
     }
 
