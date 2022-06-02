@@ -25,6 +25,9 @@ public class markParse2 {
             if (openParen == -1){
                 break;
             }
+            if (openParen-closeBracket != 1){
+                break;
+            }
             int closeParen = markdown.indexOf(")", openParen);
             if (closeParen == -1){
                 break;
